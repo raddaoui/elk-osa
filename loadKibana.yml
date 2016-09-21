@@ -17,7 +17,7 @@
       args:
        chdir: /root/beats-dashboards-1.1.0
     - name: copy topbeat index template in Elastic search
-      copy: src=templates/topbeat.yml.j2 dest=/root mode=0644
+      copy: src=templates/topbeat.template.json dest=/root mode=0644
     - name: load it in elasticsearch 
       command: "curl -XPUT 'http://localhost:{{ elastic_port }}/_template/topbeat' -d@topbeat.template.json"
       args:
