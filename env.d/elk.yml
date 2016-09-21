@@ -1,0 +1,34 @@
+---
+component_skel:
+  elastic-logstash:
+    belongs_to:
+      - elk_all
+  kibana:
+    belongs_to:
+      - elk_all
+
+container_skel:
+  elastic-logstash_container:
+    belongs_to:
+      - elastic-logstash_containers
+    contains:
+      - elastic-logstash
+  kibana_container:
+    belongs_to:
+      - kibana_containers
+    contains:
+      - kibana
+
+physical_skel:
+  elastic-logstash_containers:
+    belongs_to:
+      - all_containers
+  kibana_containers:
+    belongs_to:
+      - all_containers
+  elastic-logstash_hosts:
+    belongs_to:
+      - hosts
+  kibana_hosts:
+    belongs_to:
+      - hosts
