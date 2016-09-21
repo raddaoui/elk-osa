@@ -9,8 +9,7 @@ input:
 
 output:
   logstash:
-    hosts: ["{{ elk_server_private_ip }}:{{ logstash_beat_input_port }}"]
-
+    hosts: ["{{ hostvars[groups['elastic-logstash'][0] }}:{{ logstash_beat_input_port }}"]
 
 shipper:
 
