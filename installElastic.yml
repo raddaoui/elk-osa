@@ -38,5 +38,7 @@
         state: restarted
     - name: copy elk-data rotater script
       copy: src=templates/rotate-topbeatdata.sh dest=/root/rotate-topbeatdata.sh mode=0755
+      when: node_data == true
     - name: setup a cron job to use topbeat-data rotater script daily
       cron: name="compress old topbeat data" minute="55" hour="23" job="/root/rotate-topbeatdata.sh"
+      when: node_data == true
