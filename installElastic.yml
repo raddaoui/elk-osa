@@ -10,6 +10,7 @@
         name: "{{ inventory_hostname }}"
         container_command: |
           [[ ! -d "/var/lib/elasticsearch" ]] && mkdir -p "/var/lib/elasticsearch"
+          [[ ! -d "/var/lib/elasticsearch-olddata" ]] && mkdir -p "/var/lib/elasticsearch-olddata"
         container_config:
           - "lxc.mount.entry=/openstack/{{ inventory_hostname }} var/lib/elasticsearch none bind 0 0"
       delegate_to: "{{ physical_host }}"
@@ -38,7 +39,7 @@
         state: restarted
     - name: copy elk-data rotater script
       copy: src=templates/rotate-topbeatdata.sh dest=/root/rotate-topbeatdata.sh mode=0755
-      when: node_data == true
+      when: node_data | bool
     - name: setup a cron job to use topbeat-data rotater script daily
       cron: name="compress old topbeat data" minute="55" hour="23" job="/root/rotate-topbeatdata.sh"
-      when: node_data == true
+      when: node_data | bool

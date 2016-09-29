@@ -1,2 +1,0 @@
-# elk
-installing Elk server
