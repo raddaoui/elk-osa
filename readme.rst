@@ -18,12 +18,24 @@ Clone the elk-osa repo
     cd /opt
     git clone https://github.com/raddaoui/elk-osa.git
 
-Copy the env.d files into place
+Copy the env.d file into place
 
 .. code-block:: bash
 
     cd elk-osa
     cp env.d/elk.yml /etc/openstack_deploy/env.d/
+
+Copy the conf.d file into place
+
+.. code-block:: bash
+
+    cp conf.d/elk.yml /etc/openstack_deploy/conf.d/
+
+list your elk hosts in the conf file
+
+.. code-block:: bash
+
+    vi /etc/openstack_deploy/conf.d/elk.yml
 
 Add the export to update the inventory file location
 
